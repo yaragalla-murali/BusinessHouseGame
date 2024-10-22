@@ -21,7 +21,4 @@ public class DiceOutput {
 	public void setCompleted(boolean isCompleted) {
 		this.isCompleted = isCompleted;
 	}
-	
-	
-
 }
