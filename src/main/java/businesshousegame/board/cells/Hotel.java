@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 public class Hotel implements Cell {
 	
-	public static final BigDecimal worth=new BigDecimal(200);
-	public static final BigDecimal rent=new BigDecimal(50);
+	private final BigDecimal worth=new BigDecimal(200);
+	private final BigDecimal rent=new BigDecimal(50);
 	private String owner;
 
 	@Override
@@ -19,6 +19,14 @@ public class Hotel implements Cell {
 
 	public void setOwner(String owner) {
 		this.owner = owner;
+	}
+
+	public BigDecimal getWorth() {
+		return worth;
+	}
+
+	public BigDecimal getRent() {
+		return rent;
 	}
 
 	

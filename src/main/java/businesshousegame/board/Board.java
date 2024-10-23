@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import businesshousegame.Player;
 import businesshousegame.board.cells.Cell;
@@ -16,29 +15,47 @@ import businesshousegame.board.cells.Treasure;
 public class Board {
 	
 	private List<Cell> grid=new ArrayList<>();
-	private Map<String,Integer> PlayersCurrentPositions=new HashMap<>();
+	private Map<String,Integer> playersCurrentPositions=new HashMap<>();
 
 	public void setup(String cellPositionsStr) {
 		String[] cellsAtpositions=cellPositionsStr.split(",");
 		for(String cell: cellsAtpositions) {
 			switch(cell) {
-				case "E": grid.add(new Empty()); break;
-				case "J": grid.add(new Jail()); break; 
-				case "H": grid.add(new Hotel()); break; 
-				case "T": grid.add(new Treasure()); break; 
+				case "E" -> grid.add(new Empty());							
+				case "J" -> grid.add(new Jail()); 
+				case "H" -> grid.add(new Hotel());
+				case "T" -> grid.add(new Treasure()); 
 			}
 		}
 	}
 	
-	public Cell move(Player player, Integer diceOutput) {
-		Integer playerPosition=player.getCurrPositionOnBoard();
-		
-		Integer playerCurrentPosition=playerPosition+diceOutput;
-		if(playerCurrentPosition>=grid.size()) {
-			playerCurrentPosition=playerCurrentPosition-grid.size();
+	/*
+	 * public Cell getCell(Integer cellNumber) { return grid.get(cellNumber); }
+	 */
+	
+	
+	public void handlePlayerMove(Player player) {
+		playersCurrentPositions.put(player.getName(), player.getCurrPositionOnBoard());
+		Cell currentPlayersCell=grid.get(player.getCurrPositionOnBoard());
+		switch(currentPlayersCell) {
+			case Jail jail -> player.deductMoney(jail.getPenality());
+			case Treasure treasure -> player.addMoney(treasure.getTreasureValue());
+			case Hotel hotel -> handleHotel(hotel,player);
+			default -> System.out.println("Entered Default");
 		}
-		player.setCurrPositionOnBoard(playerCurrentPosition);		
-		PlayersCurrentPositions.put(player.getName(),playerCurrentPosition);		
-		return grid.get(playerCurrentPosition);
 	}
+	
+	private void handleHotel(Hotel hotel,Player player) {
+		if(hotel.getOwner()==null) {
+			player.deductMoney(hotel.getWorth());
+			hotel.setOwner(player.getName());
+		}else {
+			player.deductMoney(hotel.getRent());
+		}
+	}
+
+	public Map<String, Integer> getPlayersCurrentPositions() {
+		return playersCurrentPositions;
+	}
+	
 }

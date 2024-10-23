@@ -20,13 +20,18 @@ public class Player {
 	public BigDecimal getCurrentMoney() {
 		return currentMoney;
 	}
-	public void setCurrentMoney(BigDecimal currentMoney) {
-		this.currentMoney = currentMoney;
+	public void addMoney(BigDecimal money) {
+		currentMoney = currentMoney.add(money);
 	}
+	
+	public void deductMoney(BigDecimal money) {
+		currentMoney = currentMoney.subtract(money);
+	}
+	
 	public Integer getCurrPositionOnBoard() {
 		return currPositionOnBoard;
 	}
-	public void setCurrPositionOnBoard(Integer currPositionOnBoard) {
-		this.currPositionOnBoard = currPositionOnBoard;
+	public void move(Integer diceOutput) {
+		currPositionOnBoard = currPositionOnBoard+diceOutput;
 	}
 }
