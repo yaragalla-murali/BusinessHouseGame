@@ -31,7 +31,9 @@ public class Player {
 	public Integer getCurrPositionOnBoard() {
 		return currPositionOnBoard;
 	}
-	public void move(Integer diceOutput) {
+	public void move(Integer diceOutput,Integer maxCellsOnBoard) {
 		currPositionOnBoard = currPositionOnBoard+diceOutput;
+		if(currPositionOnBoard >= maxCellsOnBoard)
+			currPositionOnBoard=currPositionOnBoard-maxCellsOnBoard;
 	}
 }

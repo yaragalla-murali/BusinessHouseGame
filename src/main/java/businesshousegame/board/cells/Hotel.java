@@ -8,10 +8,7 @@ public class Hotel implements Cell {
 	private final BigDecimal rent=new BigDecimal(50);
 	private String owner;
 
-	@Override
-	public String getName() {		
-		return "Hotel";
-	}
+	
 
 	public String getOwner() {
 		return owner;

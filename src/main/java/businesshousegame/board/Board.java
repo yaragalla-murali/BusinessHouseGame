@@ -40,8 +40,8 @@ public class Board {
 		switch(currentPlayersCell) {
 			case Jail jail -> player.deductMoney(jail.getPenality());
 			case Treasure treasure -> player.addMoney(treasure.getTreasureValue());
-			case Hotel hotel -> handleHotel(hotel,player);
-			default -> System.out.println("Entered Default");
+			case Hotel hotel -> handleHotel(hotel,player);			
+			default -> System.out.print("");
 		}
 	}
 	
@@ -56,6 +56,10 @@ public class Board {
 
 	public Map<String, Integer> getPlayersCurrentPositions() {
 		return playersCurrentPositions;
+	}
+	
+	public Integer getMaxCellsInGrid() {
+		return grid.size();
 	}
 	
 }
