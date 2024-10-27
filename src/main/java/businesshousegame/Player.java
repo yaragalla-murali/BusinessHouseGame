@@ -1,35 +1,32 @@
 package businesshousegame;
 
 public class Player {
-
 	private String name;
-	private int balanceAmount=1000;
-	private int currPositionOnBoard=0;
-	
+	private int balanceAmt = 1000;
+	private int currentPositionOnBoard;
+
 	public Player(String name) {
-		this.name=name;
+		this.name = name;
 	}
+
+	public int getBalanceAmt() {
+		return balanceAmt;
+	}
+
+	public void setBalanceAmt(int balanceAmt) {
+		this.balanceAmt = balanceAmt;
+	}
+
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public int move(int diceOutput, int boardMaxCells) {
+		currentPositionOnBoard = currentPositionOnBoard + diceOutput;
+		if (currentPositionOnBoard >= boardMaxCells) {
+			currentPositionOnBoard = currentPositionOnBoard - boardMaxCells;
+		}
+		return currentPositionOnBoard;
 	}
-	public int getBalanceAmount() {
-		return balanceAmount;
-	}
-	public void setBalanceAmount(int balanceAmount) {
-		this.balanceAmount=balanceAmount;
-	}
-	
-	public Integer getCurrPositionOnBoard() {
-		return currPositionOnBoard;
-	}	
-	
-	public int movePlayer(int diceOutput, int maxCellsOnBoard) {
-		currPositionOnBoard = currPositionOnBoard+diceOutput;
-		if(currPositionOnBoard >= maxCellsOnBoard)
-			currPositionOnBoard=currPositionOnBoard-maxCellsOnBoard;
-		return currPositionOnBoard;
-	}
+
 }

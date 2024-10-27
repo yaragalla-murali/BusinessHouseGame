@@ -1,49 +1,48 @@
 package businesshousegame;
 
-import static java.lang.System.out;
-
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
-import businesshousegame.board.Board;
 import businesshousegame.board.cells.Cell;
 
 public class BusinessHouseGame {
 
+	public static void main(String[] args) {
+		Board board = new Board(
+				"E,E,J,H,E,T,J,T,E,E,H,J,T,H,E,E,J,H,E,T,J,T,E,E,H,J,T,H,J,E,E,J,H,E,T,J,T,E,E,H,J,T,E,H,E");
+		Dice dice = new Dice("4,4,4,6,7,8,5,11,10,12,2,3,5,6,7,8,5,11,10,12,2,3,5,6,7,8,5,11,10,12");
+		List<Player> players = Arrays.asList(new Player("Ramu"), new Player("Hari"), new Player("Bharath"));
+		BusinessHouseGame bhg = new BusinessHouseGame();
+		bhg.playGame(players, dice, board);
 
-    public static void main(String... args) {
+	}
 
-        List<Player> players = Arrays.asList(new Player("Ram"),
-                new Player("Krishna"), new Player("Hari"));
-        BusinessHouseGame businessHouseGame = new BusinessHouseGame();
-        businessHouseGame.play(players,
-                "E,E,J,H,E,T,J,T,E,E,H,J,T,H,E,E,J,H,E,T,J,T,E,E,"
-                        + "H,J,T,H,J,E,E,J,H,E,T,J,T,E,E,H,J,T,E,H,E",
-                "4,4,4,6,7,8,5,11,10,12,2,3,5,6,7,8,5,11,10,12,2,"
-                        + "3,5,6,7,8,5,11,10,12");
-    }
+	private List<Player> playGame(List<Player> players, Dice dice, Board board) {
+		for (int set = 0; set < 10; set++) {
+			System.out.println("The number of set is " + (set + 1));
+			playOneTurn(players, dice, board);
+		}
+		System.out.println("----------------------------Final Results-------------------");
+		players.forEach(player -> System.out.println(player.getName() + " has worth of " + player.getBalanceAmt()));
+		return players;
+	}
 
+	private List<Player> playOneTurn(List<Player> players, Dice dice, Board board) {
 
-    public void play(List<Player> players, String boardCoordinates, String diceOutputs) {
+		players.forEach(player -> {
+			int diceOutput = dice.getDice();
+			int currentPositionOnBoard = player.move(diceOutput, board.getGrid().size());
+			Cell currentCellOnBoard = board.getGrid().get(currentPositionOnBoard);
+			if (currentCellOnBoard != null) {
+				int balanceAmout = currentCellOnBoard.handleCellLanding(player);
+				player.setBalanceAmt(balanceAmout);
+			}
+			System.out.println(player.getName() + " current Position on board is " + currentPositionOnBoard
+					+ " and has balance of " + player.getBalanceAmt());
 
-        Board.setup(boardCoordinates);        
-        Dice.setup(diceOutputs);        
-        for (int set = 0; set < 10; set++) {
-            out.println("Current set : " + (set + 1));
-            for(Player player: players) {
-            	int diceOutput=Dice.giveDiceOutput();            	
-            	int currentPositionOnBoard=player.movePlayer(diceOutput,Board.getGrid().size());
-            	Cell currentCell=Board.getGrid().get(currentPositionOnBoard);
-            	currentCell.handleLandMoney(player);
-            	out.println(player.getName()+" position on board is "+player.getCurrPositionOnBoard()+" and has worth of "+player.getBalanceAmount());
-            }
-        }
-        out.println("-----------------------------The Final Results Are-----------------------");
-        Comparator<Player> sortPlayersByBalanceAmt=(player1,player2) -> Integer.valueOf(player1.getBalanceAmount()).compareTo(Integer.valueOf(player2.getBalanceAmount()));
-        players.stream().sorted(sortPlayersByBalanceAmt.reversed()).forEach(player -> 
-        	out.println(player.getName()+" has worth of "+player.getBalanceAmount())
-        		);
-       
-    }
+		});
+
+		return players;
+
+	}
 }

@@ -1,24 +1,20 @@
 package businesshousegame;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class Dice {
 
-    private static Queue<Integer> diceoutputs = new LinkedList<>();
+	private Queue<Integer> diceOutputs = new LinkedList<>();
 
+	public Dice(String diceOutputsAsStr) {
+		String[] diceOutputAsStrArray = diceOutputsAsStr.split(",");
+		for (String output : diceOutputAsStrArray) {
+			diceOutputs.add(Integer.parseInt(output));
+		}
+	}
 
-    public static Dice setup(String diceoutputStr) {
-    	String[] diceOutputs = diceoutputStr.split(",");
-        Arrays.stream(diceOutputs).forEach(diceoutput -> {
-            Integer diceOutputIntValue = Integer.parseInt(diceoutput);
-            diceoutputs.add(diceOutputIntValue);
-        });
-        return new Dice();
-    }
-
-    public static Integer giveDiceOutput() {
-        return diceoutputs.poll();
-    }
+	public Integer getDice() {
+		return diceOutputs.poll();
+	}
 }
