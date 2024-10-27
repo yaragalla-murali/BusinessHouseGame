@@ -6,18 +6,19 @@ import java.util.Queue;
 
 public class Dice {
 
-    private Queue<Integer> diceoutputs = new LinkedList<>();
+    private static Queue<Integer> diceoutputs = new LinkedList<>();
 
 
-    public Dice(String diceoutputStr) {
-        String[] diceOutputs = diceoutputStr.split(",");
+    public static Dice setup(String diceoutputStr) {
+    	String[] diceOutputs = diceoutputStr.split(",");
         Arrays.stream(diceOutputs).forEach(diceoutput -> {
             Integer diceOutputIntValue = Integer.parseInt(diceoutput);
             diceoutputs.add(diceOutputIntValue);
         });
+        return new Dice();
     }
 
-    public Integer giveDiceOutput() {
+    public static Integer giveDiceOutput() {
         return diceoutputs.poll();
     }
 }

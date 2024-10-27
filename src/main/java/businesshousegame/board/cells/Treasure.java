@@ -1,16 +1,16 @@
 package businesshousegame.board.cells;
 
-import java.math.BigDecimal;
+import businesshousegame.Player;
 
 public class Treasure implements Cell {
 	
-	private final BigDecimal treasureValue=new BigDecimal(200);
+	private final int treasureValue=200;
 
 	
-	public BigDecimal getTreasureValue() {
-		return treasureValue;
+	@Override
+	public Player handleLandMoney(Player player) {
+		int currentBalance=player.getBalanceAmount()+treasureValue;
+		player.setBalanceAmount(currentBalance);
+		return player;
 	}
-
-	
-
 }

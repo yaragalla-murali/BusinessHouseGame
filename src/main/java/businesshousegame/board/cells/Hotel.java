@@ -1,31 +1,23 @@
 package businesshousegame.board.cells;
 
-import java.math.BigDecimal;
+import businesshousegame.Player;
 
 public class Hotel implements Cell {
 	
-	private final BigDecimal worth=new BigDecimal(200);
-	private final BigDecimal rent=new BigDecimal(50);
-	private String owner;
+	private final int worth=200;
+	private final int rent=50;
+	private Player owner;	
 
-	
-
-	public String getOwner() {
-		return owner;
+	@Override
+	public Player handleLandMoney(Player player) {
+		if(owner==null) {
+			owner=player;
+			int balanceAmt=player.getBalanceAmount()-worth;
+			player.setBalanceAmount(balanceAmt);			
+		}else {
+			int balanceAmt=player.getBalanceAmount()-rent;
+			player.setBalanceAmount(balanceAmt);
+		}
+		return player;
 	}
-
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
-
-	public BigDecimal getWorth() {
-		return worth;
-	}
-
-	public BigDecimal getRent() {
-		return rent;
-	}
-
-	
-
 }
