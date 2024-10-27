@@ -17,4 +17,5 @@ public class Dice {
 	public Integer getDice() {
 		return diceOutputs.poll();
 	}
+
 }

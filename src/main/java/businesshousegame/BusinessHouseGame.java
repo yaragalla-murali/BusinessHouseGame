@@ -40,9 +40,11 @@ public class BusinessHouseGame {
 			System.out.println(player.getName() + " current Position on board is " + currentPositionOnBoard
 					+ " and has balance of " + player.getBalanceAmt());
 
+
 		});
 
 		return players;
 
 	}
+
 }

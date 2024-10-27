@@ -11,4 +11,5 @@ public class Jail implements Cell {
 		int balanceAmt = player.getBalanceAmt() - penalty;
 		return balanceAmt;
 	}
+
 }

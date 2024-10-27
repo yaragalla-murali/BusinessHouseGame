@@ -1,6 +1,7 @@
 package businesshousegame;
 
 public class Player {
+
 	private String name;
 	private int balanceAmt = 1000;
 	private int currentPositionOnBoard;
