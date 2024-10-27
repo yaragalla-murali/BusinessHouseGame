@@ -1,13 +1,13 @@
 package businesshousegame;
 
-import static java.lang.System.out;
+import businesshousegame.board.Board;
+import businesshousegame.board.cells.Cell;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import businesshousegame.board.Board;
-import businesshousegame.board.cells.Cell;
+import static java.lang.System.out;
 
 public class BusinessHouseGame {
 
@@ -27,23 +27,23 @@ public class BusinessHouseGame {
 
     public void play(List<Player> players, String boardCoordinates, String diceOutputs) {
 
-        Board.setup(boardCoordinates);        
-        Dice.setup(diceOutputs);        
+        Board.setup(boardCoordinates);
+        Dice.setup(diceOutputs);
         for (int set = 0; set < 10; set++) {
             out.println("Current set : " + (set + 1));
-            for(Player player: players) {
-            	int diceOutput=Dice.giveDiceOutput();            	
-            	int currentPositionOnBoard=player.movePlayer(diceOutput,Board.getGrid().size());
-            	Cell currentCell=Board.getGrid().get(currentPositionOnBoard);
-            	currentCell.handleLandMoney(player);
-            	out.println(player.getName()+" position on board is "+player.getCurrPositionOnBoard()+" and has worth of "+player.getBalanceAmount());
+            for (Player player : players) {
+                int diceOutput = Dice.giveDiceOutput();
+                int currentPositionOnBoard = player.movePlayer(diceOutput, Board.getGrid().size());
+                Cell currentCell = Board.getGrid().get(currentPositionOnBoard);
+                currentCell.handleLandMoney(player);
+                out.println(player.getName() + " position on board is " + player.getCurrPositionOnBoard() + " and has worth of " + player.getBalanceAmount());
             }
         }
         out.println("-----------------------------The Final Results Are-----------------------");
-        Comparator<Player> sortPlayersByBalanceAmt=(player1,player2) -> Integer.valueOf(player1.getBalanceAmount()).compareTo(Integer.valueOf(player2.getBalanceAmount()));
-        players.stream().sorted(sortPlayersByBalanceAmt.reversed()).forEach(player -> 
-        	out.println(player.getName()+" has worth of "+player.getBalanceAmount())
-        		);
-       
+        Comparator<Player> sortPlayersByBalanceAmt = (player1, player2) -> Integer.valueOf(player1.getBalanceAmount()).compareTo(Integer.valueOf(player2.getBalanceAmount()));
+        players.stream().sorted(sortPlayersByBalanceAmt.reversed()).forEach(player ->
+                out.println(player.getName() + " has worth of " + player.getBalanceAmount())
+        );
+
     }
 }

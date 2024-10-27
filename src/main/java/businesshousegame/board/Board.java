@@ -1,21 +1,17 @@
 package businesshousegame.board;
 
+import businesshousegame.board.cells.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import businesshousegame.board.cells.Cell;
-import businesshousegame.board.cells.Empty;
-import businesshousegame.board.cells.Hotel;
-import businesshousegame.board.cells.Jail;
-import businesshousegame.board.cells.Treasure;
 
 public class Board {
 
     private static List<Cell> grid = new ArrayList<>();
-   
 
-    public static Board setup(String cellPositionsStr) { 
-    	String[] cellsAtpositions = cellPositionsStr.split(",");
+
+    public static Board setup(String cellPositionsStr) {
+        String[] cellsAtpositions = cellPositionsStr.split(",");
         for (String cell : cellsAtpositions) {
             switch (cell) {
                 case "E" -> grid.add(new Empty());
@@ -25,10 +21,10 @@ public class Board {
             }
         }
         return new Board();
-	}    
+    }
 
     public static List<Cell> getGrid() {
-		return grid;
-	}
+        return grid;
+    }
 
 }

@@ -10,7 +10,7 @@ public class Dice {
 
 
     public static Dice setup(String diceoutputStr) {
-    	String[] diceOutputs = diceoutputStr.split(",");
+        String[] diceOutputs = diceoutputStr.split(",");
         Arrays.stream(diceOutputs).forEach(diceoutput -> {
             Integer diceOutputIntValue = Integer.parseInt(diceoutput);
             diceoutputs.add(diceOutputIntValue);

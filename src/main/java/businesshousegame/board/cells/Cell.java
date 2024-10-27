@@ -6,10 +6,10 @@ import businesshousegame.Player;
  * This is a tagging interface
  */
 public interface Cell {
-	
-	default  Player handleLandMoney(Player player) {
-		return player;
-	}
+
+    default Player handleLandMoney(Player player) {
+        return player;
+    }
 
 }
  

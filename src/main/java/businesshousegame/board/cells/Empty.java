@@ -1,5 +1,5 @@
 package businesshousegame.board.cells;
 
-public class Empty implements Cell {	
+public class Empty implements Cell {
 
 }
