@@ -7,8 +7,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<java.version>21</java.version>
-		<maven.compiler.release>21</maven.compiler.release> 
-		<jacoco.maven.plugin>0.8.12</jacoco.maven.plugin>		
+		<maven.compiler.release>21</maven.compiler.release>
+		<jacoco.maven.plugin>0.8.12</jacoco.maven.plugin>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -45,6 +45,11 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>${jacoco.maven.plugin}</version>
+				<configuration>
+					<excludes>
+						<exclude>**/*businesshousegame/BusinessHouseGame.class</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>

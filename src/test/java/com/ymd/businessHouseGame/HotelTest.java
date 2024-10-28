@@ -1,6 +1,7 @@
 package com.ymd.businessHouseGame;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
@@ -29,5 +30,14 @@ public class HotelTest {
 		hotel.setOwner(player);
 		int balanceAmt = hotel.handleCellLanding(player);
 		assertEquals(950, balanceAmt);
+	}
+
+	@Test
+	public void getOwner() {
+		Hotel hotel = new Hotel();
+		Player player = Mockito.mock(Player.class);
+		hotel.setOwner(player);
+		Player owner = hotel.getOwner();
+		assertNotNull(owner);
 	}
 }
