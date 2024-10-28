@@ -34,8 +34,8 @@ public class BusinessHouseGame {
 			int currentPositionOnBoard = player.move(diceOutput, board.getGrid().size());
 			Cell currentCellOnBoard = board.getGrid().get(currentPositionOnBoard);
 			if (currentCellOnBoard != null) {
-				int balanceAmout = currentCellOnBoard.handleCellLanding(player);
-				player.setBalanceAmt(balanceAmout);
+				int balanceAmount = currentCellOnBoard.handleCellLanding(player);
+				player.setBalanceAmt(balanceAmount);
 			}
 			System.out.println(player.getName() + " current Position on board is " + currentPositionOnBoard
 					+ " and has balance of " + player.getBalanceAmt());
