@@ -30,4 +30,12 @@ public class Player {
 		return currentPositionOnBoard;
 	}
 
+	public int getCurrentPositionOnBoard() {
+		return currentPositionOnBoard;
+	}
+
+	public void setCurrentPositionOnBoard(int currentPositionOnBoard) {
+		this.currentPositionOnBoard = currentPositionOnBoard;
+	}
+
 }
