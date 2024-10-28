@@ -8,21 +8,21 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import businesshousegame.Board;
-import businesshousegame.BusinessHouseGame;
 import businesshousegame.Dice;
+import businesshousegame.Game;
 import businesshousegame.Player;
 
-public class BusinessHouseGameTest {
+public class GameTest {
 
 	@Test
-	public void businessHouseGame() {
+	public void gameSingleTurn() {
 		Board board = new Board("J,T,H,E");
 		Dice dice = new Dice("1,2");
 		List<Player> players = Arrays.asList(new Player("Hari"));
-		BusinessHouseGame bhg = new BusinessHouseGame();
-		List<Player> playersAfterOneTurn = bhg.playOneTurn(players, dice, board);
-		Player playerAfterOneTurn=playersAfterOneTurn.getFirst();
-		assertTrue(playerAfterOneTurn.getBalanceAmt()==1200 && playerAfterOneTurn.getCurrentPositionOnBoard()==1);
+		Game game = new Game();
+		List<Player> playersAfterOneTurn = game.playOneTurn(players, dice, board);
+		Player playerAfterOneTurn = playersAfterOneTurn.getFirst();
+		assertTrue(playerAfterOneTurn.getBalanceAmt() == 1200 && playerAfterOneTurn.getCurrentPositionOnBoard() == 1);
 	}
 
 }
