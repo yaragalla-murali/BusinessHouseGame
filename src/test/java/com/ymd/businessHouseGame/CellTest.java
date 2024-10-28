@@ -15,13 +15,12 @@ public class CellTest {
 		Cell cell = new Cell() {
 			@Override
 			public int handleCellLanding(Player player) {
-				// TODO Auto-generated method stub
 				return Cell.super.handleCellLanding(player);
 			}
 		};
 
 		Player player = Mockito.mock(Player.class);
 		int currentBalance = cell.handleCellLanding(player);
-		assertEquals(0,currentBalance);
+		assertEquals(0, currentBalance);
 	}
 }
