@@ -15,3 +15,19 @@ While most of the inheritance is fine, it also inherits unwanted elements like `
 To prevent this, the project POM contains empty overrides for these elements.
 If you manually switch to a different parent and actually want the inheritance, you need to remove those overrides.
 
+----------------Game rest end points------------------
+
+Player:
+-------
+
+getDice (it gets the dice number from the game)
+move(moves the player on the board. internally it also calls the handle landing cell)
+getSetNumber (it gives the number of turns the player played)
+
+
+Game:-
+------
+GiveDice
+handleLandingCell
+
+what i could not get is total players in the game. Little confusion. can we discuss
