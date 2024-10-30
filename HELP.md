@@ -17,17 +17,37 @@ If you manually switch to a different parent and actually want the inheritance, 
 
 ----------------Game rest end points------------------
 
-Player:
--------
-
-getDice (it gets the dice number from the game)
-move(moves the player on the board. internally it also calls the handle landing cell)
-getSetNumber (it gives the number of turns the player played)
-
-
-Game:-
+Game
 ------
-GiveDice
-handleLandingCell
+@PostMapping(/games)
+public Game createGame(){return Game}
 
-what i could not get is total players in the game. Little confusion. can we discuss
+@GetMapping(/games/{id})
+public Game getGame(int gameId){return Game}
+
+@PostMapping(/games/{id}/boards)
+public Board createBoard(String boardCords, int gameId){return Board}
+
+@GetMapping(/boards/{id)
+public Board getBoard(int boardId){return Board}
+
+@PostMapping(/games/{id}/players
+public Player createPlayer(int gameId){returns Player}
+
+@PutMapping(/players)
+public Player updatePlayer(Player player){}
+
+@GetMapping(/players/{id})
+public Player getPlayer(int playerId){return Player}
+
+@PostMapping(/games/{id}/dices)
+public Dice createDice(String diceoutputs, int gameId){return Dice}
+
+@GetMapping(/dices/{id})
+public int getDice(int diceId){return diceOutput}
+
+@PutMapping(/players/{id}/{diceOutput}
+public int movePlayer(int playerId, int diceOutput){return currentPositionOnBoard}
+
+@PutMapping(/boards/{id}/{playersCurrentPositionOnBoard})
+public int handleLandingCell(int boardId, int playersCurrentPositionOnBoard){return balanceAmt)
