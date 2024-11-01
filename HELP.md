@@ -20,34 +20,21 @@ If you manually switch to a different parent and actually want the inheritance, 
 Game
 ------
 @PostMapping(/games)
-public Game createGame(){return Game}
+public Game createGame(Player player){return Game}
 
-@GetMapping(/games/{id})
-public Game getGame(int gameId){return Game}
+The first player will create the game and will share the game id to the other players who wants to join it.When the game is created the dice and board setup will also be done and the game will be ready to start. if no other players joins for a certain time the game will be aborted.
 
-@PostMapping(/games/{id}/boards)
-public Board createBoard(String boardCords, int gameId){return Board}
+@PostMapping(/games/)
+public Game ConnectToGame(Game game, Player player){return Game}
 
-@GetMapping(/boards/{id)
-public Board getBoard(int boardId){return Board}
+The player will be added to the game based on the shared game id.
 
-@PostMapping(/games/{id}/players
-public Player createPlayer(int gameId){returns Player}
+@PutMapping(/players/{id}/{gameId}
+public Game movePlayer(int playerId, int gemeId){return Game}
 
-@PutMapping(/players)
-public Player updatePlayer(Player player){}
+when player asks to move his position on board , first the check will happen whether the requested player is eligible for the turn. if he is eligible then the dice output will be taken and will be added to the player current position on board. based on the current position on the board the cell landing rules will be handled and the player current balance will be updated.
 
-@GetMapping(/players/{id})
-public Player getPlayer(int playerId){return Player}
+@PutMapping(/games/{id})
+public Game endGameAndGetResults(int gameId){return Game)
 
-@PostMapping(/games/{id}/dices)
-public Dice createDice(String diceoutputs, int gameId){return Dice}
-
-@GetMapping(/dices/{id})
-public int getDice(int diceId){return diceOutput}
-
-@PutMapping(/players/{id}/{diceOutput}
-public int movePlayer(int playerId, int diceOutput){return currentPositionOnBoard}
-
-@PutMapping(/boards/{id}/{playersCurrentPositionOnBoard})
-public int handleLandingCell(int boardId, int playersCurrentPositionOnBoard){return balanceAmt)
+when any player requested to end the game, the check will happen to see whether all the players have completed their turn. if completed the game status will be changed to "completed" and the game results will be given.
