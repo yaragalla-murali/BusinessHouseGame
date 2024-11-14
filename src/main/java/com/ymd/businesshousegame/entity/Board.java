@@ -12,17 +12,15 @@ import jakarta.persistence.OrderBy;
 
 @Entity
 public class Board {
-	
-	@Column(name="board_id")
+
+	@Column(name = "board_id")
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@OneToMany
 	@OrderBy("sequenceOnBoard")
 	private List<Cell> boardCells;
-
-	
 
 	public int getId() {
 		return id;
@@ -40,5 +38,4 @@ public class Board {
 		this.boardCells = boardCells;
 	}
 
-	
 }

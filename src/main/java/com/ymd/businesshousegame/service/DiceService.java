@@ -15,7 +15,7 @@ import com.ymd.businesshousegame.repo.DiceOutputDao;
 public class DiceService {
 
 	@Autowired
-	private DiceDao diceRepo;
+	private DiceDao diceDao;
 
 	@Autowired
 	private DiceOutputDao diceOutputDao;
@@ -24,8 +24,8 @@ public class DiceService {
 		String[] diceOutputStrArray = diceOutputsStr.split(",");
 		List<DiceOutput> diceOutputs = new ArrayList<>();
 		Dice dice = new Dice();
-		dice = diceRepo.save(dice);
-		diceRepo.flush();
+		dice = diceDao.save(dice);
+		diceDao.flush();
 		int counter = 0;
 		for (String diceOutputStr : diceOutputStrArray) {
 			DiceOutput diceOutput = new DiceOutput();
@@ -41,4 +41,11 @@ public class DiceService {
 		return dice;
 
 	}
+
+	public Dice saveDice(Dice dice) {
+		dice = diceDao.save(dice);
+		diceDao.flush();
+		return dice;
+	}
+
 }

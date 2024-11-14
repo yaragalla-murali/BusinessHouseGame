@@ -12,7 +12,7 @@ public class Dice {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer Id;
 
-	private int lastUsedOutputIndex;
+	private int lastUsedOutputIndex = -1;
 
 	public Integer getId() {
 		return Id;

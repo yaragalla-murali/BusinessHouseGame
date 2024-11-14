@@ -15,15 +15,15 @@ import jakarta.persistence.OneToOne;
 public class Cell {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
 	@Enumerated(EnumType.STRING)
-	@Column(name="cell_type")
-	private CellType cellType;	
-	private int jailPenalty=150;	
-	private int treasureValue=200;	
-	private int hotelWorth=200;	
-	private int hotelRent=50;
+	@Column(name = "cell_type")
+	private CellType cellType;
+	private int jailPenalty = 150;
+	private int treasureValue = 200;
+	private int hotelWorth = 200;
+	private int hotelRent = 50;
 	@OneToOne
 	private Player hotelOwner;
 	private int sequenceOnBoard;

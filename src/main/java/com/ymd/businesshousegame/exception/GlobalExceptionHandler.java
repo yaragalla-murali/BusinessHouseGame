@@ -11,10 +11,25 @@ public class GlobalExceptionHandler {
 	public ErrorResponse handlePlayerCannotBeAddedException(PlayerCannotBeAddedException ex) {
 		return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
 	}
-	
-	@ExceptionHandler(value=GameDoesNotExistException.class)
+
+	@ExceptionHandler(value = GameDoesNotExistException.class)
 	public ErrorResponse handleGameDoesNotExistException(GameDoesNotExistException ex) {
-		return new ErrorResponse(HttpStatus.BAD_REQUEST.value(),ex.getMessage());
+		return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
+	}
+
+	@ExceptionHandler(value = WrongPlayerException.class)
+	public ErrorResponse handleWrongPlayer(WrongPlayerException ex) {
+		return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
+	}
+
+	@ExceptionHandler(value = NoSuchPlayerException.class)
+	public ErrorResponse handleNoSuchPlayerException(NoSuchPlayerException ex) {
+		return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
+	}
+
+	@ExceptionHandler(value = GameAlreadyCompletedException.class)
+	public ErrorResponse handleGameAlreadyCompletedException(GameAlreadyCompletedException ex) {
+		return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
 	}
 
 }

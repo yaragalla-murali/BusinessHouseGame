@@ -4,10 +4,10 @@ public class ErrorResponse {
 
 	private int statusCode;
 	private String msg;
-	
-	public ErrorResponse(int statusCode,String msg) {
-		this.msg=msg;
-		this.statusCode=statusCode;
+
+	public ErrorResponse(int statusCode, String msg) {
+		this.msg = msg;
+		this.statusCode = statusCode;
 	}
 
 	public int getStatusCode() {
