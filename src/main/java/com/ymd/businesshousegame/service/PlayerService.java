@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service;
 
 import com.ymd.businesshousegame.entity.Game;
 import com.ymd.businesshousegame.entity.Player;
-import com.ymd.businesshousegame.repo.PlayerDao;
+import com.ymd.businesshousegame.repo.PlayerRepository;
 
 @Service
 public class PlayerService {
 	@Autowired
-	private PlayerDao playerDao;
+	private PlayerRepository playerDao;
 
 	public Player savePlayer(Player player) {
 		player = playerDao.save(player);

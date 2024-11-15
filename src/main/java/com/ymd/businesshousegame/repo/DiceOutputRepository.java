@@ -6,7 +6,7 @@ import com.ymd.businesshousegame.entity.DiceOutput;
 import java.util.List;
 import com.ymd.businesshousegame.entity.Dice;
 
-public interface DiceOutputDao extends JpaRepository<DiceOutput, Integer> {
+public interface DiceOutputRepository extends JpaRepository<DiceOutput, Integer> {
 
 	List<DiceOutput> findBySequenceAndDice(int sequence, Dice dice);
 }

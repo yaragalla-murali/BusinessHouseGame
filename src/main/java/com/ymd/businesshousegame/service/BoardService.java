@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import com.ymd.businesshousegame.entity.Board;
 import com.ymd.businesshousegame.entity.Cell;
 import com.ymd.businesshousegame.model.CellType;
-import com.ymd.businesshousegame.repo.BoardDao;
+import com.ymd.businesshousegame.repo.BoardRepository;
 
 @Service
 public class BoardService {
 
 	@Autowired
-	private BoardDao boardDao;
+	private BoardRepository boardDao;
 
 	@Autowired
 	private CellService cellService;

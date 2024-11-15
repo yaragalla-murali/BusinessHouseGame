@@ -19,7 +19,7 @@ import com.ymd.businesshousegame.exception.NoSuchPlayerException;
 import com.ymd.businesshousegame.exception.PlayerCannotBeAddedException;
 import com.ymd.businesshousegame.exception.WrongPlayerException;
 import com.ymd.businesshousegame.model.GameStatus;
-import com.ymd.businesshousegame.repo.GameDao;
+import com.ymd.businesshousegame.repo.GameRepository;
 
 @Service
 public class GameService {
@@ -27,7 +27,7 @@ public class GameService {
 	Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	private GameDao gameDao;
+	private GameRepository gameDao;
 
 	@Autowired
 	private PlayerService playerService;

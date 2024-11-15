@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.ymd.businesshousegame.entity.Cell;
 
-public interface CellDao extends JpaRepository<Cell, Integer> {
+public interface CellRepository extends JpaRepository<Cell, Integer> {
 
 }

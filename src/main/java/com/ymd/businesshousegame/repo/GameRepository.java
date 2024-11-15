@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.ymd.businesshousegame.entity.Game;
 
 @Repository
-public interface GameDao extends JpaRepository<Game, Integer> {
+public interface GameRepository extends JpaRepository<Game, Integer> {
 
 }

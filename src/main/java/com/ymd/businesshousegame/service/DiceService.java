@@ -8,17 +8,17 @@ import org.springframework.stereotype.Service;
 
 import com.ymd.businesshousegame.entity.Dice;
 import com.ymd.businesshousegame.entity.DiceOutput;
-import com.ymd.businesshousegame.repo.DiceDao;
-import com.ymd.businesshousegame.repo.DiceOutputDao;
+import com.ymd.businesshousegame.repo.DiceRepository;
+import com.ymd.businesshousegame.repo.DiceOutputRepository;
 
 @Service
 public class DiceService {
 
 	@Autowired
-	private DiceDao diceDao;
+	private DiceRepository diceDao;
 
 	@Autowired
-	private DiceOutputDao diceOutputDao;
+	private DiceOutputRepository diceOutputDao;
 
 	public Dice setup(String diceOutputsStr) {
 		String[] diceOutputStrArray = diceOutputsStr.split(",");

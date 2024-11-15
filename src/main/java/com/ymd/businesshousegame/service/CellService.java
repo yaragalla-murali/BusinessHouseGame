@@ -11,7 +11,7 @@ import com.ymd.businesshousegame.entity.Board;
 import com.ymd.businesshousegame.entity.Cell;
 import com.ymd.businesshousegame.entity.Player;
 import com.ymd.businesshousegame.model.CellType;
-import com.ymd.businesshousegame.repo.CellDao;
+import com.ymd.businesshousegame.repo.CellRepository;
 
 @Service
 public class CellService {
@@ -19,7 +19,7 @@ public class CellService {
 	Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	private CellDao cellDao;
+	private CellRepository cellDao;
 
 	public List<Cell> saveCells(List<Cell> cells) {
 		cells = cellDao.saveAll(cells);

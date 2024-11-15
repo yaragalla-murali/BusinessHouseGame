@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.ymd.businesshousegame.entity.Dice;
 import com.ymd.businesshousegame.entity.DiceOutput;
-import com.ymd.businesshousegame.repo.DiceOutputDao;
+import com.ymd.businesshousegame.repo.DiceOutputRepository;
 
 @Service
 public class DiceOutputService {
 	@Autowired
-	private DiceOutputDao diceOutputDao;
+	private DiceOutputRepository diceOutputDao;
 
 	public DiceOutput giveDice(Dice dice, int sequenceNumber) {
 		List<DiceOutput> outputs = diceOutputDao.findBySequenceAndDice(sequenceNumber, dice);
