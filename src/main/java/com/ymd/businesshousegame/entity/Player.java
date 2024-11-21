@@ -12,7 +12,7 @@ public class Player {
 	@Column(name = "player_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 	private String name;
 	private int totalBalance = 1000;
 	private int currentPositionOnBoard;
@@ -42,20 +42,20 @@ public class Player {
 		this.currentPositionOnBoard = currentPositionOnBoard;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public int getPlayerPosition() {
 		return playerPosition;
 	}
 
 	public void setPlayerPosition(int playerPosition) {
 		this.playerPosition = playerPosition;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.ymd.businesshousegame.entity.Board;
 import com.ymd.businesshousegame.entity.Dice;
-import com.ymd.businesshousegame.entity.DiceOutput;
 import com.ymd.businesshousegame.entity.Game;
 import com.ymd.businesshousegame.entity.Player;
 import com.ymd.businesshousegame.exception.GameAlreadyCompletedException;
@@ -31,9 +30,6 @@ public class GameService {
 
 	@Autowired
 	private PlayerService playerService;
-
-	@Autowired
-	private DiceOutputService diceOutputService;
 
 	@Autowired
 	private CellService cellService;
@@ -62,7 +58,7 @@ public class GameService {
 			throw new GameDoesNotExistException("Game with the gameId " + gameId + " does not exist.");
 		}
 
-		if (game.getStatus().equals(GameStatus.CREATED) && game.getPlayers().size() <= 3) {
+		if (game.getStatus().equals(GameStatus.CREATED) && game.getPlayers().size() < 3) {
 			List<Player> players = game.getPlayers();
 			player.setPlayerPosition(players.size() + 1);
 			player = playerService.savePlayer(player);
@@ -93,9 +89,9 @@ public class GameService {
 
 		int lastUsedIndex = game.getDice().getLastUsedOutputIndex();
 		logger.info("****************Last used Index : " + lastUsedIndex);
-		DiceOutput output = diceOutputService.giveDice(game.getDice(), (lastUsedIndex + 1));
-		logger.info("****************Dice output : " + output.getOutput());
-		int playersCurrentPostionOnBoard = player.getCurrentPositionOnBoard() + output.getOutput();
+		int output = diceService.giveDice(game.getDice());
+		logger.info("****************Dice output : " + output);
+		int playersCurrentPostionOnBoard = player.getCurrentPositionOnBoard() + output;
 		logger.info("****************Players current Position On Board : " + playersCurrentPostionOnBoard);
 		player.setCurrentPositionOnBoard(playersCurrentPostionOnBoard);
 		cellService.handleCellLanding(game.getBoard(), player);
@@ -107,12 +103,7 @@ public class GameService {
 			game.setNumberOfTurnsCompleted(game.getNumberOfTurnsCompleted() + 1);
 		if (game.getNumberOfTurnsCompleted() == 10)
 			game.setStatus(GameStatus.COMPLETED);
-
-		Dice dice = game.getDice();
-		dice.setLastUsedOutputIndex(lastUsedIndex + 1);
-		diceService.saveDice(dice);
 		playerService.savePlayer(player);
-		game.setDice(dice);
 		game = gameDao.save(game);
 
 		return game;

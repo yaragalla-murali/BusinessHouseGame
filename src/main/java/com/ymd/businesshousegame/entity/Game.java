@@ -22,7 +22,7 @@ public class Game {
 	@Column(name = "Game_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 
 	@OneToMany
 	@OrderBy("playerPosition")
@@ -41,14 +41,6 @@ public class Game {
 	private GameStatus status;
 
 	private int numberOfTurnsCompleted;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public List<Player> getPlayers() {
 		return players;
@@ -96,6 +88,14 @@ public class Game {
 
 	public void setNumberOfTurnsCompleted(int numberOfTurnsCompleted) {
 		this.numberOfTurnsCompleted = numberOfTurnsCompleted;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
