@@ -74,17 +74,12 @@ public class BusinessHouseControllerTest {
         ObjectWriter ow = mapper.writer();//.withDefaultPrettyPrinter();
         String requestJson = ow.writeValueAsString(player);
 
-        ResultActions perform = mockMvc
+        mockMvc
                 .perform(post("/games")
                         .contentType(APPLICATION_JSON_UTF8)
                         .content(requestJson)
-                        .accept(MediaType.APPLICATION_JSON));
-
-        System.out.println("perform.toString() = " + perform.andReturn().getResponse().getContentAsString());
-
-        perform.andExpect(status().isOk());
-
-        perform.andExpect(content().json(objectMapper.writeValueAsString(game)));
+                        .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                        .andExpect(content().json(objectMapper.writeValueAsString(game)));
     }
 
 }
