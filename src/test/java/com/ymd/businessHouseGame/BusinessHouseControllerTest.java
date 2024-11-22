@@ -26,7 +26,7 @@ import com.ymd.businesshousegame.service.BoardService;
 import com.ymd.businesshousegame.service.DiceService;
 import com.ymd.businesshousegame.service.GameService;
 
-@SpringBootTest 
+@SpringBootTest
 @AutoConfigureMockMvc
 //@WebMvcTest(BusinessHouseGameController.class)
 public class BusinessHouseControllerTest {
@@ -42,15 +42,12 @@ public class BusinessHouseControllerTest {
 
 	@MockBean
 	private DiceService diceService;
-	
+
 	@Autowired
-    private ObjectMapper objectMapper;
-	
-	public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
-	
-	
+	private ObjectMapper objectMapper;
+
 	@Test
-	void testCreateGame()throws Exception {
+	void testCreateGame() throws Exception {
 
 		Board board = boardService.setupBoard(
 				"E,E,J,H,E,T,J,T,E,E,H,J,T,H,E,E,J,H,E,T,J,T,E,E," + "H,J,T,H,J,E,E,J,H,E,T,J,T,E,E,H,J,T,E,H,E");
@@ -60,19 +57,18 @@ public class BusinessHouseControllerTest {
 		Game game = new Game();
 
 		given(gameService.createGame(board, dice, player)).willReturn(game);
-		
-		ObjectMapper mapper = new ObjectMapper();
-	    mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-	    ObjectWriter ow = mapper.writer();//.withDefaultPrettyPrinter();
-	    String requestJson=ow.writeValueAsString(player );
 
-		mockMvc
-	      .perform(post("/games")
-	      .contentType(APPLICATION_JSON_UTF8)
-	      .content(requestJson)
-	      .accept(MediaType.APPLICATION_JSON))
-	      .andExpect(status().isOk())
-	      .andExpect(content().json(objectMapper.writeValueAsString(game)));
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+		ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
+		String requestJson = ow.writeValueAsString(player);
+
+		mockMvc.perform(post("/games")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(requestJson)
+			    .accept(MediaType.APPLICATION_JSON))
+		        .andExpect(status().isOk())
+				.andExpect(content().json(objectMapper.writeValueAsString(game)));
 	}
 
 }
