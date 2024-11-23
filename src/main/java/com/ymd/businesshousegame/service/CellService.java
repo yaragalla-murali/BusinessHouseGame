@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import com.ymd.businesshousegame.entity.Board;
 import com.ymd.businesshousegame.entity.Cell;
 import com.ymd.businesshousegame.entity.Player;
-import com.ymd.businesshousegame.model.CellType;
-import com.ymd.businesshousegame.repo.CellRepository;
+import com.ymd.businesshousegame.entity.CellType;
+import com.ymd.businesshousegame.repository.CellRepository;
 
 @Service
 public class CellService {

@@ -1,7 +1,5 @@
 package com.ymd.businesshousegame.entity;
 
-import com.ymd.businesshousegame.model.CellType;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

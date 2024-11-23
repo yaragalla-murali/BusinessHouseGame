@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ymd.businesshousegame.entity.Dice;
-import com.ymd.businesshousegame.repo.DiceRepository;
+import com.ymd.businesshousegame.repository.DiceRepository;
 
 @Service
 public class DiceService {

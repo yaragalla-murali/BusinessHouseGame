@@ -1,4 +1,4 @@
-package com.ymd.businesshousegame.repo;
+package com.ymd.businesshousegame.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

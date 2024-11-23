@@ -1,4 +1,4 @@
-package com.ymd.businesshousegame.model;
+package com.ymd.businesshousegame.entity;
 
 public enum CellType {
 

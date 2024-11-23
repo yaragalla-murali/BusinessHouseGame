@@ -17,8 +17,8 @@ import com.ymd.businesshousegame.exception.GameDoesNotExistException;
 import com.ymd.businesshousegame.exception.NoSuchPlayerException;
 import com.ymd.businesshousegame.exception.PlayerCannotBeAddedException;
 import com.ymd.businesshousegame.exception.WrongPlayerException;
-import com.ymd.businesshousegame.model.GameStatus;
-import com.ymd.businesshousegame.repo.GameRepository;
+import com.ymd.businesshousegame.entity.GameStatus;
+import com.ymd.businesshousegame.repository.GameRepository;
 
 @Service
 public class GameService {

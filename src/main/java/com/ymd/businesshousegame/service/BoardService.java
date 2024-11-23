@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.ymd.businesshousegame.entity.Board;
 import com.ymd.businesshousegame.entity.Cell;
-import com.ymd.businesshousegame.model.CellType;
-import com.ymd.businesshousegame.repo.BoardRepository;
+import com.ymd.businesshousegame.entity.CellType;
+import com.ymd.businesshousegame.repository.BoardRepository;
 
 @Service
 public class BoardService {

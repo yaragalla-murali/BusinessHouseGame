@@ -3,8 +3,6 @@ package com.ymd.businesshousegame.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ymd.businesshousegame.model.GameStatus;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.ymd.businesshousegame.entity.Game;
 import com.ymd.businesshousegame.entity.Player;
-import com.ymd.businesshousegame.repo.PlayerRepository;
+import com.ymd.businesshousegame.repository.PlayerRepository;
 
 @Service
 public class PlayerService {
