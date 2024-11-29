@@ -58,8 +58,7 @@
                     <excludes>
                         <exclude>com/ymd/businesshousegame/BusinesshousegameApplication.class</exclude>
                         <exclude>com/ymd/businesshousegame/model/**</exclude>
-                        <exclude>com/ymd/businesshousegame/entity/**</exclude>
-                        <exclude>com/ymd/businesshousegame/service/**</exclude>
+                        <exclude>com/ymd/businesshousegame/entity/**</exclude>                        
                         <exclude>com/ymd/businesshousegame/exception/**</exclude>
                     </excludes>
                 </configuration>

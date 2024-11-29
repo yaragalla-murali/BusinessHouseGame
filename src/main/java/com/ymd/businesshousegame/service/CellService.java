@@ -27,7 +27,7 @@ public class CellService {
 		return cells;
 	}
 
-	public void handleCellLanding(Board board, Player player) {
+	public Player handleCellLanding(Board board, Player player) {
 		Cell cell = board.getBoardCells().get(player.getCurrentPositionOnBoard());
 		CellType celltype = cell.getCellType();
 		logger.info("****************Last used Index : " + celltype.toString());
@@ -42,6 +42,8 @@ public class CellService {
 		} else if (celltype.equals(CellType.HOTEL) && cell.getHotelOwner() != null) {
 			player.setTotalBalance(player.getTotalBalance() - cell.getHotelRent());
 		}
+		
+		return player;
 
 	}
 }

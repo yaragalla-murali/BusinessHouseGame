@@ -94,7 +94,7 @@ public class GameService {
 		int playersCurrentPostionOnBoard = player.getCurrentPositionOnBoard() + output;
 		logger.info("****************Players current Position On Board : " + playersCurrentPostionOnBoard);
 		player.setCurrentPositionOnBoard(playersCurrentPostionOnBoard);
-		cellService.handleCellLanding(game.getBoard(), player);
+		player=cellService.handleCellLanding(game.getBoard(), player);
 		logger.info("****************Player Total Balance : " + player.getTotalBalance());
 		game.setStatus(GameStatus.INPROGRESS);
 		Player nextPlayer = playerService.getNextPlayer(player, game);
