@@ -141,5 +141,7 @@ public class GameServiceTest {
         Game result = gameService.movePlayer(1, 100);
         assertNotNull(result);
         assertEquals(800, result.getPlayers().get(0).getTotalBalance());
-    }
+
+    }	
+
 }
