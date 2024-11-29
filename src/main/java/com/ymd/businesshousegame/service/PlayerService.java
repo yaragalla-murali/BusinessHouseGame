@@ -6,28 +6,23 @@ import com.ymd.businesshousegame.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PlayerService {
     @Autowired
     private PlayerRepository playerDao;
 
     public Player savePlayer(Player player) {
-        player = playerDao.save(player);
-        playerDao.flush();
-        return playerDao.getReferenceById(player.getId());
+        return playerDao.save(player);
     }
 
     public Player getPlayer(int playerId) {
-        Player player = playerDao.findById(playerId).orElse(null);
-        return player;
+        return playerDao.findById(playerId).orElse(null);
     }
 
     public Player getNextPlayer(Player currentPlayer, Game game) {
-        Player nextPlayer = null;
-        if (currentPlayer.getPlayerPosition() == game.getPlayers().size())
-            nextPlayer = game.getPlayers().get(0);
-        else
-            nextPlayer = game.getPlayers().get((currentPlayer.getPlayerPosition()));
-        return nextPlayer;
+        List<Player> players = game.getPlayers();
+        return (currentPlayer.getPlayerPosition() == players.size()) ? players.getFirst() : players.get((currentPlayer.getPlayerPosition()));
     }
 }

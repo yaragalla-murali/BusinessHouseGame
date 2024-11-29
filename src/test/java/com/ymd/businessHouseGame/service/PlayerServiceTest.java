@@ -35,7 +35,7 @@ public class PlayerServiceTest {
         player.setName("test player");
 
         when(playerDao.save(any(Player.class))).thenReturn(player);
-        when(playerDao.getReferenceById(anyInt())).thenReturn(player);
+//        when(playerDao.getReferenceById(anyInt())).thenReturn(player);
 
         Player resultPlayer = playerService.savePlayer(player);
 
