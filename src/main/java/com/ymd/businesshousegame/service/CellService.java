@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class CellService {
 
@@ -23,20 +21,22 @@ public class CellService {
     public Player handleCellLanding(Board board, Player player) {
         Cell cell = board.getBoardCells().get(player.getCurrentPositionOnBoard());
         CellType celltype = cell.getCellType();
-        logger.info("****************Last used Index : " + celltype.toString());
-        if (celltype.equals(CellType.JAIL)) {
-            player.setTotalBalance(player.getTotalBalance() - cell.getJailPenalty());
-        } else if (celltype.equals(CellType.TREASURE)) {
-            player.setTotalBalance(player.getTotalBalance() + cell.getTreasureValue());
-        } else if (celltype.equals(CellType.HOTEL) && cell.getHotelOwner() == null) {
+        switch (celltype) {
+            case JAIL -> player.setTotalBalance(player.getTotalBalance() - cell.getJailPenalty());
+            case TREASURE -> player.setTotalBalance(player.getTotalBalance() + cell.getTreasureValue());
+            case HOTEL -> handleHotel(player, cell);
+            default -> logger.error("Unknown cell type: " + celltype);
+        }
+        return player;
+    }
+
+    private void handleHotel(Player player, Cell cell) {
+        if (cell.getHotelOwner() == null) {
             player.setTotalBalance(player.getTotalBalance() - cell.getHotelWorth());
             cell.setHotelOwner(player);
             cellDao.save(cell);
-        } else if (celltype.equals(CellType.HOTEL) && cell.getHotelOwner() != null) {
+        } else {
             player.setTotalBalance(player.getTotalBalance() - cell.getHotelRent());
         }
-
-        return player;
-
     }
 }

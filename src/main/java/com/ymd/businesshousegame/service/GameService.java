@@ -63,6 +63,37 @@ public class GameService {
     }
 
     public Game movePlayer(int playerId, int gameId) {
+        Game game = getGame(gameId);
+        Player player = getPlayer(playerId, game);
+
+        int playersCurrentPositionOnBoard = player.getCurrentPositionOnBoard() + diceService.giveDice(game.getDice());
+        player.setCurrentPositionOnBoard(playersCurrentPositionOnBoard);
+        player = cellService.handleCellLanding(game.getBoard(), player);
+        game.setStatus(GameStatus.INPROGRESS);
+        Player nextPlayer = playerService.getNextPlayer(player, game);
+        game.setNextPlayer(nextPlayer);
+        if (player.getPlayerPosition() == 3) {
+            game.setNumberOfTurnsCompleted(game.getNumberOfTurnsCompleted() + 1);
+        }
+        if (game.getNumberOfTurnsCompleted() == 10) {
+            game.setStatus(GameStatus.COMPLETED);
+        }
+        playerService.savePlayer(player);
+
+        return gameDao.save(game);
+    }
+
+    private Player getPlayer(int playerId, Game game) {
+        Player player = playerService.getPlayer(playerId);
+        if (player == null)
+            throw new NoSuchPlayerException("No player exist with id: " + playerId);
+        if (player.getId() != game.getNextPlayer().getId()) {
+            throw new WrongPlayerException("Wrong Player. Not his turn.");
+        }
+        return player;
+    }
+
+    private Game getGame(int gameId) {
         Game game = gameDao.findById(gameId).orElse(null);
 
         if (game == null) {
@@ -71,32 +102,6 @@ public class GameService {
         if (game.getStatus().equals(GameStatus.COMPLETED)) {
             throw new GameAlreadyCompletedException("The game with id " + gameId + " is already completed.");
         }
-        Player player = playerService.getPlayer(playerId);
-        if (player == null)
-            throw new NoSuchPlayerException("No player exist with id: " + playerId);
-        if (player.getId() != game.getNextPlayer().getId()) {
-            throw new WrongPlayerException("Wrong Player. Not his turn.");
-        }
-
-        int lastUsedIndex = game.getDice().getLastUsedOutputIndex();
-        logger.info("****************Last used Index : " + lastUsedIndex);
-        int output = diceService.giveDice(game.getDice());
-        logger.info("****************Dice output : " + output);
-        int playersCurrentPostionOnBoard = player.getCurrentPositionOnBoard() + output;
-        logger.info("****************Players current Position On Board : " + playersCurrentPostionOnBoard);
-        player.setCurrentPositionOnBoard(playersCurrentPostionOnBoard);
-        player = cellService.handleCellLanding(game.getBoard(), player);
-        logger.info("****************Player Total Balance : " + player.getTotalBalance());
-        game.setStatus(GameStatus.INPROGRESS);
-        Player nextPlayer = playerService.getNextPlayer(player, game);
-        game.setNextPlayer(nextPlayer);
-        if (player.getPlayerPosition() == 3)
-            game.setNumberOfTurnsCompleted(game.getNumberOfTurnsCompleted() + 1);
-        if (game.getNumberOfTurnsCompleted() == 10)
-            game.setStatus(GameStatus.COMPLETED);
-        playerService.savePlayer(player);
-        game = gameDao.save(game);
-
         return game;
     }
 
