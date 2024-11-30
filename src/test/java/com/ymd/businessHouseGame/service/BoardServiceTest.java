@@ -29,9 +29,6 @@ public class BoardServiceTest {
 	@Mock
 	private BoardRepository boardDao;
 
-	@Mock
-	private CellService cellService;
-
 	@Test
 	void testSetupBoard() {
 		String boardCords = "E,E,J,H,E,T,J,T,E,E,H,J,T,H,E,E,J,H,E,T,J,T,E,E,H,J,T,E,H,E";
@@ -52,9 +49,7 @@ public class BoardServiceTest {
 		board.setBoardCells(boardCells);
 		board.setId(1);
 
-		when(cellService.saveCells(anyList())).thenReturn(boardCells);
 		when(boardDao.save(any(Board.class))).thenReturn(board);
-		when(boardDao.getReferenceById(anyInt())).thenReturn(board);
 
 		Board result = boardService.setupBoard(boardCords);
 
