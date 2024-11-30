@@ -16,6 +16,13 @@ public class Board {
     @OrderBy("sequenceOnBoard")
     private List<Cell> boardCells;
 
+    public Board() {
+    }
+
+    public Board(List<Cell> boardCells) {
+        this.boardCells = boardCells;
+    }
+
     public int getId() {
         return id;
     }

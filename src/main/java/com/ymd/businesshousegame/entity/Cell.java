@@ -19,6 +19,14 @@ public class Cell {
     private Player hotelOwner;
     private int sequenceOnBoard;
 
+    public Cell() {
+    }
+
+    public Cell(CellType cellType, int counter) {
+        this.cellType = cellType;
+        this.sequenceOnBoard = counter;
+    }
+
     public int getId() {
         return Id;
     }

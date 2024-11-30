@@ -20,44 +20,21 @@ public class BoardService {
     private CellService cellService;
 
     public Board setupBoard(String boardCords) {
-        String[] boardCordsAsArray = boardCords.split(",");
+        return boardDao.save(new Board(getBoardCells(boardCords.split(","))));
+    }
+
+    private static List<Cell> getBoardCells(String[] boardCordsAsArray) {
         List<Cell> boardCells = new ArrayList<>();
         int counter = 0;
         for (String cord : boardCordsAsArray) {
             switch (cord) {
-                case "J" -> {
-                    Cell jail = new Cell();
-                    jail.setCellType(CellType.JAIL);
-                    jail.setSequenceOnBoard(counter);
-                    boardCells.add(jail);
-                }
-                case "T" -> {
-                    Cell treasure = new Cell();
-                    treasure.setCellType(CellType.TREASURE);
-                    treasure.setSequenceOnBoard(counter);
-                    boardCells.add(treasure);
-                }
-                case "H" -> {
-                    Cell hotel = new Cell();
-                    hotel.setCellType(CellType.HOTEL);
-                    hotel.setSequenceOnBoard(counter);
-                    boardCells.add(hotel);
-                }
-                case "E" -> {
-                    Cell empty = new Cell();
-                    empty.setCellType(CellType.EMPTY);
-                    empty.setSequenceOnBoard(counter);
-                    boardCells.add(empty);
-                }
+                case "J" -> boardCells.add(new Cell(CellType.JAIL, counter));
+                case "T" -> boardCells.add(new Cell(CellType.TREASURE, counter));
+                case "H" -> boardCells.add(new Cell(CellType.HOTEL, counter));
+                case "E" -> boardCells.add(new Cell(CellType.EMPTY, counter));
             }
             counter = counter + 1;
         }
-        Board board = new Board();
-        boardCells = cellService.saveCells(boardCells);
-        board.setBoardCells(boardCells);
-        board = boardDao.save(board);
-        boardDao.flush();
-        return boardDao.getReferenceById(board.getId());
-
+        return boardCells;
     }
 }
