@@ -23,6 +23,11 @@ public class Board {
         this.boardCells = boardCells;
     }
 
+    public Board(int id, List<Cell> boardCells) {
+        this.id = id;
+        this.boardCells = boardCells;
+    }
+
     public int getId() {
         return id;
     }

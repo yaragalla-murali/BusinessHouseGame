@@ -7,7 +7,7 @@ public class Cell {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    private int id;
     @Enumerated(EnumType.STRING)
     @Column(name = "cell_type")
     private CellType cellType;
@@ -27,12 +27,17 @@ public class Cell {
         this.sequenceOnBoard = counter;
     }
 
+    public Cell(int id, CellType cellType) {
+        this.id = id;
+        this.cellType = cellType;
+    }
+
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public CellType getCellType() {

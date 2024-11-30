@@ -14,6 +14,14 @@ public class Player {
     private int currentPositionOnBoard;
     private int playerPosition;
 
+    public Player() {
+    }
+
+    public Player(int id, String testPlayer) {
+        this.id = id;
+        this.name = testPlayer;
+    }
+
     public String getName() {
         return name;
     }

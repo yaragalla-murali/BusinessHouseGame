@@ -31,17 +31,7 @@ public class CellServiceTest {
 
     @Test
     void testSaveCells() {
-        List<Cell> cellList = new ArrayList<>();
-
-        Cell cell1 = new Cell();
-        cell1.setCellType(CellType.JAIL);
-        cell1.setId(1);
-        cellList.add(cell1);
-
-        Cell cell2 = new Cell();
-        cell2.setCellType(CellType.TREASURE);
-        cell2.setId(2);
-        cellList.add(cell2);
+        List<Cell> cellList = List.of(new Cell(1, CellType.JAIL), new Cell(2, CellType.TREASURE));
 
         when(cellDao.saveAll(anyList())).thenReturn(cellList);
 
@@ -71,17 +61,9 @@ public class CellServiceTest {
             counter = counter + 1;
         }
 
-        Board board = new Board();
-        board.setBoardCells(boardCells);
-        board.setId(1);
+        Board board = new Board(1, boardCells);
 
-        Cell cell = new Cell();
-        cell.setCellType(CellType.JAIL);
-        cell.setId(1);
-
-        Player player = new Player();
-        player.setId(1);
-        player.setName("Test Player");
+        Player player = new Player(1, "Test Player");
 
         Player resultPlayer = cellService.handleCellLanding(board, player);
 
