@@ -66,9 +66,6 @@ public class GameService {
         Game game = getGame(gameId);
         Player player = getPlayer(playerId, game);
 
-        int playersCurrentPositionOnBoard = player.getCurrentPositionOnBoard() + diceService.giveDice(game.getDice());
-        player.setCurrentPositionOnBoard(playersCurrentPositionOnBoard);
-        player = cellService.handleCellLanding(game.getBoard(), player);
         game.setStatus(GameStatus.INPROGRESS);
         Player nextPlayer = playerService.getNextPlayer(player, game);
         game.setNextPlayer(nextPlayer);
@@ -90,6 +87,10 @@ public class GameService {
         if (player.getId() != game.getNextPlayer().getId()) {
             throw new WrongPlayerException("Wrong Player. Not his turn.");
         }
+        int playersCurrentPositionOnBoard = player.getCurrentPositionOnBoard() + diceService.giveDice(game.getDice());
+        player.setCurrentPositionOnBoard(playersCurrentPositionOnBoard);
+        player = cellService.handleCellLanding(game.getBoard(), player);
+
         return player;
     }
 
