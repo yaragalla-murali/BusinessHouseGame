@@ -20,67 +20,67 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class DiceServiceTest {
 
-    @Mock
-    private DiceRepository diceRepo;
+	@Mock
+	private DiceRepository diceRepo;
 
-    @InjectMocks
-    private DiceService diceService;
+	@InjectMocks
+	private DiceService diceService;
 
-    @Test
-    void testSetup() {
-        String diceOutputsStr = "4,4,4,6,7,8,5,11,10,12,2,3,5,6,7,8,5";
+	@Test
+	void testSetup() {
+		String diceOutputsStr = "4,4,4,6,7,8,5,11,10,12,2,3,5,6,7,8,5";
 
-        String[] diceOutputStrArray = diceOutputsStr.split(",");
-        List<Integer> diceOutputs = new ArrayList<>();
-        Dice dice = new Dice();
-        for (String diceOutputStr : diceOutputStrArray) {
-            Integer output = Integer.parseInt(diceOutputStr);
-            diceOutputs.add(output);
-        }
-        dice.setOutputs(diceOutputs);
+		String[] diceOutputStrArray = diceOutputsStr.split(",");
+		List<Integer> diceOutputs = new ArrayList<>();
+		Dice dice = new Dice();
+		for (String diceOutputStr : diceOutputStrArray) {
+			Integer output = Integer.parseInt(diceOutputStr);
+			diceOutputs.add(output);
+		}
+		dice.setOutputs(diceOutputs);
 
-        when(diceRepo.save(any(Dice.class))).thenReturn(dice);
+		when(diceRepo.save(any(Dice.class))).thenReturn(dice);
 
-        Dice resultDice = diceService.setup(diceOutputsStr);
+		Dice resultDice = diceService.setup(diceOutputsStr);
 
-        assertNotNull(resultDice);
-        for (int i = 0; i < dice.getOutputs().size(); i++) {
-            assertEquals(dice.getOutputs().get(i), resultDice.getOutputs().get(i));
-        }
-    }
+		assertNotNull(resultDice);
+		for (int i = 0; i < dice.getOutputs().size(); i++) {
+			assertEquals(dice.getOutputs().get(i), resultDice.getOutputs().get(i));
+		}
+	}
 
-    @Test
-    void testSaveDice() {
+	@Test
+	void testSaveDice() {
 
-        Dice dice = new Dice();
-        dice.setId(10);
+		Dice dice = new Dice();
+		dice.setId(10);
 
-        when(diceRepo.save(dice)).thenReturn(dice);
+		when(diceRepo.save(dice)).thenReturn(dice);
 
-        Dice resultDice = diceService.saveDice(dice);
+		Dice resultDice = diceService.saveDice(dice);
 
-        assertNotNull(resultDice);
-        assertEquals(dice.getId(), resultDice.getId());
-    }
+		assertNotNull(resultDice);
+		assertEquals(dice.getId(), resultDice.getId());
+	}
 
-    @Test
-    void testGiveDice() {
-        String diceOutputsStr = "4,4,4,6,7,8,5,11,10,12,2,3,5,6,7,8,5";
+	@Test
+	void testGiveDice() {
+		String diceOutputsStr = "4,4,4,6,7,8,5,11,10,12,2,3,5,6,7,8,5";
 
-        String[] diceOutputStrArray = diceOutputsStr.split(",");
-        List<Integer> diceOutputs = new ArrayList<>();
-        Dice dice = new Dice();
-        for (String diceOutputStr : diceOutputStrArray) {
-            Integer output = Integer.parseInt(diceOutputStr);
-            diceOutputs.add(output);
-        }
-        dice.setOutputs(diceOutputs);
-        dice.setLastUsedOutputIndex(1);
+		String[] diceOutputStrArray = diceOutputsStr.split(",");
+		List<Integer> diceOutputs = new ArrayList<>();
+		Dice dice = new Dice();
+		for (String diceOutputStr : diceOutputStrArray) {
+			Integer output = Integer.parseInt(diceOutputStr);
+			diceOutputs.add(output);
+		}
+		dice.setOutputs(diceOutputs);
+		dice.setLastUsedOutputIndex(1);
 
-        when(diceRepo.save(dice)).thenReturn(dice);
+		when(diceRepo.save(dice)).thenReturn(dice);
 
-        int output = diceService.giveDice(dice);
+		int output = diceService.giveDice(dice);
 
-        assertEquals(4, output);
-    }
+		assertEquals(4, output);
+	}
 }
