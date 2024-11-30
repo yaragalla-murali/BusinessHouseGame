@@ -19,6 +19,13 @@ public class Dice {
 
     private int lastUsedOutputIndex = -1;
 
+    public Dice() {
+    }
+
+    public Dice(List<Integer> diceOutputs) {
+        this.outputs = diceOutputs;
+    }
+
     public int getLastUsedOutputIndex() {
         return lastUsedOutputIndex;
     }

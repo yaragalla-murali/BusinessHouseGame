@@ -20,12 +20,6 @@ public class CellService {
     @Autowired
     private CellRepository cellDao;
 
-    public List<Cell> saveCells(List<Cell> cells) {
-        cells = cellDao.saveAll(cells);
-        cellDao.flush();
-        return cells;
-    }
-
     public Player handleCellLanding(Board board, Player player) {
         Cell cell = board.getBoardCells().get(player.getCurrentPositionOnBoard());
         CellType celltype = cell.getCellType();

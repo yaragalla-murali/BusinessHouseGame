@@ -30,21 +30,6 @@ public class CellServiceTest {
     private CellService cellService;
 
     @Test
-    void testSaveCells() {
-        List<Cell> cellList = List.of(new Cell(1, CellType.JAIL), new Cell(2, CellType.TREASURE));
-
-        when(cellDao.saveAll(anyList())).thenReturn(cellList);
-
-        List<Cell> cells = cellService.saveCells(cellList);
-        assertNotNull(cells);
-        for (int i = 0; i < cellList.size(); i++) {
-            assertEquals(cellList.get(i).getId(), cells.get(i).getId());
-            assertEquals(cellList.get(i).getCellType(), cells.get(i).getCellType());
-        }
-
-    }
-
-    @Test
     void testHandleCellLanding() {
 
         String boardCords = "T,E,J,H,E,T,J,T,E,E,H,J,T,H,E,E,J,H,E,T,J,T,E,E,H,J,T,E,H,E";

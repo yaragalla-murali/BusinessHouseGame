@@ -49,19 +49,6 @@ public class DiceServiceTest {
 		}
 	}
 
-	@Test
-	void testSaveDice() {
-
-		Dice dice = new Dice();
-		dice.setId(10);
-
-		when(diceRepo.save(dice)).thenReturn(dice);
-
-		Dice resultDice = diceService.saveDice(dice);
-
-		assertNotNull(resultDice);
-		assertEquals(dice.getId(), resultDice.getId());
-	}
 
 	@Test
 	void testGiveDice() {

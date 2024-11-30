@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DiceService {
@@ -15,24 +17,14 @@ public class DiceService {
     private DiceRepository diceRepo;
 
     public Dice setup(String diceOutputsStr) {
-        String[] diceOutputStrArray = diceOutputsStr.split(",");
-        List<Integer> diceOutputs = new ArrayList<>();
-        Dice dice = new Dice();
-        for (String diceOutputStr : diceOutputStrArray) {
-            Integer output = Integer.parseInt(diceOutputStr);
-            diceOutputs.add(output);
-        }
-        dice.setOutputs(diceOutputs);
-        dice = diceRepo.save(dice);
-        diceRepo.flush();
-        return dice;
-
+        return diceRepo.save(new Dice(getDiceOutputs(diceOutputsStr)));
     }
 
-    public Dice saveDice(Dice dice) {
-        dice = diceRepo.save(dice);
-        diceRepo.flush();
-        return dice;
+    private static List<Integer> getDiceOutputs(String diceOutputsStr) {
+        return Arrays.stream(diceOutputsStr.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     public int giveDice(Dice dice) {
