@@ -1,4 +1,4 @@
-package com.ymd.businessHouseGame.service;
+package com.ymd.businesshousegame.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -29,10 +29,6 @@ import com.ymd.businesshousegame.exception.NoSuchPlayerException;
 import com.ymd.businesshousegame.exception.PlayerCannotBeAddedException;
 import com.ymd.businesshousegame.exception.WrongPlayerException;
 import com.ymd.businesshousegame.repository.GameRepository;
-import com.ymd.businesshousegame.service.CellService;
-import com.ymd.businesshousegame.service.DiceService;
-import com.ymd.businesshousegame.service.GameService;
-import com.ymd.businesshousegame.service.PlayerService;
 
 @ExtendWith(MockitoExtension.class)
 public class GameServiceTest {

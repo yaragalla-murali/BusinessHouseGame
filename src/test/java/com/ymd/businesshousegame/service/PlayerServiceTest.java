@@ -1,9 +1,8 @@
-package com.ymd.businessHouseGame.service;
+package com.ymd.businesshousegame.service;
 
 import com.ymd.businesshousegame.entity.Game;
 import com.ymd.businesshousegame.entity.Player;
 import com.ymd.businesshousegame.repository.PlayerRepository;
-import com.ymd.businesshousegame.service.PlayerService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

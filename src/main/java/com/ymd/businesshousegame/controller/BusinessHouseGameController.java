@@ -26,21 +26,18 @@ public class BusinessHouseGameController {
                 "E,E,J,H,E,T,J,T,E,E,H,J,T,H,E,E,J,H,E,T,J,T,E,E," + "H,J,T,H,J,E,E,J,H,E,T,J,T,E,E,H,J,T,E,H,E");
         Dice dice = diceService.setup("4,4,4,6,7,8,5,11,10,12,2,3,5,6,7,8,5,11,10,12,2," + "3,5,6,7,8,5,11,10,12");
 
-        Game game = gameService.createGame(board, dice, player);
-        return game;
+        return gameService.createGame(board, dice, player);
 
     }
 
     @PutMapping("/games")
     public Game ConnectToGame(@RequestParam int gameId, @RequestBody Player player) {
-        Game game = gameService.addPlayerToGame(gameId, player);
-        return game;
+        return gameService.addPlayerToGame(gameId, player);
     }
 
     @PutMapping("/games/players/{id}")
     public Game movePlayer(@PathVariable("id") int playerId, @RequestParam int gameId) {
-        Game game = gameService.movePlayer(playerId, gameId);
-        return game;
+        return gameService.movePlayer(playerId, gameId);
     }
 
 }

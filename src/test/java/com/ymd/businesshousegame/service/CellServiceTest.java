@@ -1,11 +1,10 @@
-package com.ymd.businessHouseGame.service;
+package com.ymd.businesshousegame.service;
 
 import com.ymd.businesshousegame.entity.Board;
 import com.ymd.businesshousegame.entity.Cell;
 import com.ymd.businesshousegame.entity.CellType;
 import com.ymd.businesshousegame.entity.Player;
 import com.ymd.businesshousegame.repository.CellRepository;
-import com.ymd.businesshousegame.service.CellService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,8 +16,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class CellServiceTest {

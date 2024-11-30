@@ -1,11 +1,9 @@
-package com.ymd.businessHouseGame.service;
+package com.ymd.businesshousegame.service;
 
 import com.ymd.businesshousegame.entity.Board;
 import com.ymd.businesshousegame.entity.Cell;
 import com.ymd.businesshousegame.entity.CellType;
 import com.ymd.businesshousegame.repository.BoardRepository;
-import com.ymd.businesshousegame.service.BoardService;
-import com.ymd.businesshousegame.service.CellService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
