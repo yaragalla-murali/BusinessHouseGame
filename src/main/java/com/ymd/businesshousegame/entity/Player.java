@@ -17,9 +17,13 @@ public class Player {
     public Player() {
     }
 
-    public Player(int id, String testPlayer) {
+    public Player(int id, String name) {
         this.id = id;
-        this.name = testPlayer;
+        this.name = name;
+    }
+
+    public Player(String name) {
+        this.name = name;
     }
 
     public String getName() {

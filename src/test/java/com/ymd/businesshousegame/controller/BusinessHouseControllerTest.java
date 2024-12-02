@@ -43,15 +43,12 @@ public class BusinessHouseControllerTest {
 
     @Test
     void testCreateGame() throws Exception {
-        Player player = new Player();
-        player.setName("lakshman");
+        Player player = new Player("lakshman");
         Game game = new Game();
 
         given(gameService.createGame(any(), any(), any())).willReturn(game);
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-        ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
+        ObjectWriter ow = getObjectWriter();
         String requestJson = ow.writeValueAsString(player);
 
         mockMvc.perform(post("/games").contentType(APPLICATION_JSON_UTF8).content(requestJson)
@@ -61,15 +58,12 @@ public class BusinessHouseControllerTest {
 
     @Test
     void testConnectToGame() throws Exception {
-        Player player = new Player();
-        player.setName("lakshman");
+        Player player = new Player("lakshman");
         Game game = new Game();
 
         given(gameService.addPlayerToGame(anyInt(), any())).willReturn(game);
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-        ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
+        ObjectWriter ow = getObjectWriter();
         String requestJson = ow.writeValueAsString(player);
 
         mockMvc.perform(put("/games?gameId=1").contentType(APPLICATION_JSON_UTF8).content(requestJson)
@@ -79,14 +73,18 @@ public class BusinessHouseControllerTest {
 
     @Test
     void movePlayer() throws Exception {
-
         Game game = new Game();
-
         given(gameService.movePlayer(anyInt(), anyInt())).willReturn(game);
 
-        mockMvc.perform(
-                        put("/games/players/1?gameId=1").contentType(APPLICATION_JSON_UTF8).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(put("/games/players/1?gameId=1").contentType(APPLICATION_JSON_UTF8).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()).andExpect(content().json(objectMapper.writeValueAsString(game)));
+    }
+
+    private static ObjectWriter getObjectWriter() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+        ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
+        return ow;
     }
 
 }

@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.4.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>com.ymd</groupId>
     <artifactId>businesshousegame</artifactId>
@@ -16,6 +16,7 @@
 
     <properties>
         <java.version>21</java.version>
+        <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -53,12 +54,12 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.12</version>
+                <version>${jacoco-maven-plugin.version}</version>
                 <configuration>
                     <excludes>
                         <exclude>com/ymd/businesshousegame/BusinesshousegameApplication.class</exclude>
                         <exclude>com/ymd/businesshousegame/model/**</exclude>
-                        <exclude>com/ymd/businesshousegame/entity/**</exclude>                        
+                        <exclude>com/ymd/businesshousegame/entity/**</exclude>
                         <exclude>com/ymd/businesshousegame/exception/**</exclude>
                     </excludes>
                 </configuration>
