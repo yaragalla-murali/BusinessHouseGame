@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -34,7 +35,7 @@ public class GameService {
         Game game = new Game();
         game.setBoard(board);
         game.setDice(dice);
-        List<Player> players = Arrays.asList(player);
+        List<Player> players = Collections.singletonList(player);
         game.setPlayers(players);
         game.setNextPlayer(player);
         game.setStatus(GameStatus.CREATED);

@@ -83,8 +83,7 @@ public class BusinessHouseControllerTest {
     private static ObjectWriter getObjectWriter() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-        ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
-        return ow;
+        return mapper.writer().withDefaultPrettyPrinter();
     }
 
 }

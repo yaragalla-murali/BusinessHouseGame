@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CellService {
 
-    Logger logger = LoggerFactory.getLogger(getClass());
+    final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private CellRepository cellDao;
@@ -25,7 +25,7 @@ public class CellService {
             case JAIL -> player.setTotalBalance(player.getTotalBalance() - cell.getJailPenalty());
             case TREASURE -> player.setTotalBalance(player.getTotalBalance() + cell.getTreasureValue());
             case HOTEL -> handleHotel(player, cell);
-            default -> logger.error("Unknown cell type: " + celltype);
+            default -> logger.error("Unknown cell type: {}", celltype);
         }
         return player;
     }

@@ -69,7 +69,7 @@ public class GameServiceTest {
 		savedGame.setId(100);
 		savedGame.setDice(dice);
 		savedGame.setBoard(board);
-		savedGame.setPlayers(Arrays.asList(savedPlayer));
+		savedGame.setPlayers(List.of(savedPlayer));
 
 		when(playerService.savePlayer(player)).thenReturn(savedPlayer);
 		when(gameDao.save(any(Game.class))).thenReturn(savedGame);
@@ -148,7 +148,7 @@ public class GameServiceTest {
 
 		Game result = gameService.movePlayer(1, 100);
 		assertNotNull(result);
-		assertEquals(800, result.getPlayers().get(0).getTotalBalance());
+		assertEquals(800, result.getPlayers().getFirst().getTotalBalance());
 
 	}
 
