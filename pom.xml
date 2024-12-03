@@ -62,7 +62,7 @@
                 <version>${jacoco-maven-plugin.version}</version>
                 <configuration>
                     <excludes>
-                        <exclude>com/ymd/businesshousegame/BusinesshousegameApplication.class</exclude>
+                        <exclude>com/ymd/businesshousegame/BusinessHouseGameApplication.class</exclude>
                         <exclude>com/ymd/businesshousegame/model/**</exclude>
                         <exclude>com/ymd/businesshousegame/entity/**</exclude>
                         <exclude>com/ymd/businesshousegame/exception/**</exclude>
