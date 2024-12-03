@@ -8,7 +8,6 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,8 +46,6 @@ public class GameServiceTest {
 
 	@Mock
 	private CellService cellService;
-
-	// private BoardService boardService;
 
 	@Test
 	void createGameTest() {
@@ -301,6 +298,31 @@ public class GameServiceTest {
 		assertEquals(GameStatus.COMPLETED, game.getStatus());
 
 		// assertEquals("Wrong Player. Not his turn.", exception.getMessage());
+	}
+
+	@Test
+	void testAddPlayerToGame_PlayerCannotBeAdded_InProgress() {
+
+		int gameId = 1;
+		Player player = new Player();
+
+		List<Player> players = new ArrayList<>();
+		for (int i = 0; i < 3; i++) {
+			Player testPlayer = new Player();
+			testPlayer.setId((i + 1));
+			players.add(testPlayer);
+		}
+		Game game = new Game();
+		game.setPlayers(players);
+		game.setId(gameId);
+		game.setStatus(GameStatus.INPROGRESS);
+
+		when(gameDao.findById(gameId)).thenReturn(Optional.of(game));
+
+		PlayerCannotBeAddedException exception = assertThrows(PlayerCannotBeAddedException.class,
+				() -> gameService.addPlayerToGame(gameId, player));
+
+		assertEquals("Player cannot be added at this stage.", exception.getMessage());
 	}
 
 }
