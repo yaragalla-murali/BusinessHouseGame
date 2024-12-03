@@ -30,6 +30,7 @@ public class BoardService {
                 case "T" -> boardCells.add(new Cell(TREASURE, counter++));
                 case "H" -> boardCells.add(new Cell(HOTEL, counter++));
                 case "E" -> boardCells.add(new Cell(EMPTY, counter++));
+                default -> throw new RuntimeException("Invalid Cell Type");
             }
         }
         return boardCells;
