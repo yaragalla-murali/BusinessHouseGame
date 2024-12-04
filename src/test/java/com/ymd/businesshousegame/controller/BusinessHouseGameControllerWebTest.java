@@ -27,17 +27,11 @@ public class BusinessHouseGameControllerWebTest {
 		Player player = new Player();
 		player.setName("Player1");
 
-		ResponseEntity<Game> response = restTemplate.postForEntity("/games", player, Game.class);
-		assertEquals(HttpStatus.OK, response.getStatusCode());
+		//Game expectedGame = new Game(); a game that you will create
 
-		Game createdGame = response.getBody();
+        Game actualGame = restTemplate.postForEntity("/games", player, Game.class).getBody();
 
-		assertNotNull(createdGame);
-		assertNotNull(createdGame.getId());
-		assertNotNull(createdGame.getBoard());
-		assertNotNull(createdGame.getDice());
-		assertEquals(GameStatus.CREATED, createdGame.getStatus());
-		assertEquals("Player1", createdGame.getPlayers().get(0).getName());
+		assertEquals(expectedGame, actualGame);
 
 	}
 
