@@ -28,34 +28,6 @@ public class CellServiceTest {
 	private CellService cellService;
 
 	@Test
-	void testHandleCellLandingTreasureCell() {
-
-		String boardCords = "T,E,J,H,E,T,J,T,E,E,H,J,T,H,E,E,J,H,E,T,J,T,E,E,H,J,T,E,H,E";
-		String[] boardCordsAsArray = boardCords.split(",");
-		List<Cell> boardCells = new ArrayList<>();
-		int counter = 0;
-		for (String cord : boardCordsAsArray) {
-			switch (cord) {
-			case "J" -> boardCells.add(new Cell(CellType.JAIL, counter));
-			case "T" -> boardCells.add(new Cell(CellType.TREASURE, counter));
-			case "H" -> boardCells.add(new Cell(CellType.HOTEL, counter));
-			case "E" -> boardCells.add(new Cell(CellType.EMPTY, counter));
-			}
-			counter = counter + 1;
-		}
-
-		Board board = new Board(1, boardCells);
-
-		Player player = new Player(1, "Test Player");
-
-		Player resultPlayer = cellService.handleCellLanding(board, player);
-
-		assertNotNull(resultPlayer);
-		assertEquals(1200, resultPlayer.getTotalBalance());
-
-	}
-
-	@Test
 	void testHandleCellLandingHotelCell() {
 
 		String boardCords = "H,E,J,H,E,T,J,T,E,E,H,J,T,H,E,E,J,H,E,T,J,T,E,E,H,J,T,E,H,E";
@@ -173,4 +145,32 @@ public class CellServiceTest {
 		assertEquals(1000, resultPlayer.getTotalBalance());
 
 	}
+
+	@Test
+	void testHandleCellLandingTreasureCell() {
+		String boardCords = "T,E,J,H,E,T,J,T,E,E,H,J,T,H,E,E,J,H,E,T,J,T,E,E,H,J,T,E,H,E";
+		String[] boardCordsAsArray = boardCords.split(",");
+		List<Cell> boardCells = new ArrayList<>();
+		int counter = 0;
+		for (String cord : boardCordsAsArray) {
+			switch (cord) {
+			case "J" -> boardCells.add(new Cell(CellType.JAIL, counter));
+			case "T" -> boardCells.add(new Cell(CellType.TREASURE, counter));
+			case "H" -> boardCells.add(new Cell(CellType.HOTEL, counter));
+			case "E" -> boardCells.add(new Cell(CellType.EMPTY, counter));
+			}
+			counter = counter + 1;
+		}
+
+		Board board = new Board(1, boardCells);
+
+		Player player = new Player(1, "Test Player");
+
+		Player resultPlayer = cellService.handleCellLanding(board, player);
+
+		assertNotNull(resultPlayer);
+		assertEquals(1200, resultPlayer.getTotalBalance());
+
+	}
+
 }
