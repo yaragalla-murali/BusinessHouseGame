@@ -43,7 +43,7 @@ public class BoardServiceTest {
         }
 
         Board board = new Board();
-        board.setBoardCells(boardCells);
+        board.setCells(boardCells);
         board.setId(1);
 
         when(boardDao.save(any(Board.class))).thenReturn(board);
@@ -51,9 +51,9 @@ public class BoardServiceTest {
         Board result = boardService.setupBoard(boardCords);
 
         assertNotNull(result);
-        assertEquals(boardCells.size(), result.getBoardCells().size());
-        for (int i = 0; i < result.getBoardCells().size(); i++) {
-            assertEquals(boardCells.get(i).getCellType(), result.getBoardCells().get(i).getCellType());
+        assertEquals(boardCells.size(), result.getCells().size());
+        for (int i = 0; i < result.getCells().size(); i++) {
+            assertEquals(boardCells.get(i).getCellType(), result.getCells().get(i).getCellType());
         }
     }
 

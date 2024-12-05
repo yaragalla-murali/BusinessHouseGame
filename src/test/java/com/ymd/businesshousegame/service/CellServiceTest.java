@@ -80,7 +80,7 @@ public class CellServiceTest {
 
 		assertNotNull(resultPlayer);
 		assertEquals(800, resultPlayer.getTotalBalance());
-		assertNotNull(board.getBoardCells().getFirst().getHotelOwner());
+		assertNotNull(board.getCells().getFirst().getHotelOwner());
 
 	}
 
@@ -114,7 +114,7 @@ public class CellServiceTest {
 
 		assertNotNull(resultPlayer);
 		assertEquals(950, resultPlayer.getTotalBalance());
-		assertNotNull(board.getBoardCells().getFirst().getHotelOwner());
+		assertNotNull(board.getCells().getFirst().getHotelOwner());
 
 	}
 

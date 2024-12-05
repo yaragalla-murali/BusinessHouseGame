@@ -5,12 +5,13 @@ import jakarta.persistence.*;
 @Entity
 public class Player {
 
-    @Column(name = "player_id")
+    //@Column(name = "player_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private int totalBalance = 1000;
+    @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 1000")
+    private int totalBalance;
     private int currentPositionOnBoard;
     private int playerPosition;
 

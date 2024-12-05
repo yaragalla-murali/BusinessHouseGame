@@ -14,7 +14,7 @@ public class Dice {
 
     @ElementCollection
     @CollectionTable(name = "dice_outputs", joinColumns = @JoinColumn(name = "dice_id"))
-    @Column(name = "output")
+    //@Column(name = "output")
     private List<Integer> outputs = new ArrayList<>();
 
     private int lastUsedOutputIndex = -1;

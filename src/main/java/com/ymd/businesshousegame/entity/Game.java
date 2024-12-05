@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 public class Game {
 
-    @Column(name = "Game_id")
+    //@Column(name = "Game_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -26,7 +26,7 @@ public class Game {
     private Dice dice;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
+    //@Column(name = "status")
     private GameStatus status;
 
     private int numberOfTurnsCompleted;
