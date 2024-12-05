@@ -19,7 +19,7 @@ public class CellService {
     private CellRepository cellDao;
 
     public Player handleCellLanding(Board board, Player player) {
-        Cell cell = board.getBoardCells().get(player.getCurrentPositionOnBoard());
+        Cell cell = board.getCells().get(player.getCurrentPositionOnBoard());
         CellType celltype = cell.getCellType();
         switch (celltype) {
             case JAIL -> player.setTotalBalance(player.getTotalBalance() - cell.getJailPenalty());

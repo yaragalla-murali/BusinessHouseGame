@@ -7,25 +7,24 @@ import java.util.List;
 @Entity
 public class Board {
 
-	@Column(name = "board_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@OrderBy("sequenceOnBoard")
-	private List<Cell> boardCells;
+	private List<Cell> cells;
 
 	public Board() {
 	}
 
-	public Board(List<Cell> boardCells) {
-		this.boardCells = boardCells;
+	public Board(List<Cell> cells) {
+		this.cells = cells;
 	}
 
-	public Board(int id, List<Cell> boardCells) {
+	public Board(int id, List<Cell> cells) {
 		this.id = id;
-		this.boardCells = boardCells;
+		this.cells = cells;
 	}
 
 	public int getId() {
@@ -36,12 +35,12 @@ public class Board {
 		this.id = id;
 	}
 
-	public List<Cell> getBoardCells() {
-		return boardCells;
+	public List<Cell> getCells() {
+		return cells;
 	}
 
-	public void setBoardCells(List<Cell> boardCells) {
-		this.boardCells = boardCells;
+	public void setCells(List<Cell> cells) {
+		this.cells = cells;
 	}
 
 }

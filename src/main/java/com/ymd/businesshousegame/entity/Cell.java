@@ -9,12 +9,16 @@ public class Cell {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Enumerated(EnumType.STRING)
-    @Column(name = "cell_type")
-    private CellType cellType;
-    private int jailPenalty = 150;
-    private int treasureValue = 200;
-    private int hotelWorth = 200;
-    private int hotelRent = 50;
+   // @Column(name = "cell_type")
+    private CellType cellType;    
+    @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 150")
+    private int jailPenalty;    
+    @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 200")
+    private int treasureValue;
+    @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 200")
+    private int hotelWorth;
+    @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 50")
+    private int hotelRent;
     @OneToOne
     private Player hotelOwner;
     private int sequenceOnBoard;

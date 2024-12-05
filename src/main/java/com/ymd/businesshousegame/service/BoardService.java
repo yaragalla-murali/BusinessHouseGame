@@ -1,15 +1,19 @@
 package com.ymd.businesshousegame.service;
 
-import com.ymd.businesshousegame.entity.Board;
-import com.ymd.businesshousegame.entity.Cell;
-import com.ymd.businesshousegame.repository.BoardRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import static com.ymd.businesshousegame.entity.CellType.EMPTY;
+import static com.ymd.businesshousegame.entity.CellType.HOTEL;
+import static com.ymd.businesshousegame.entity.CellType.JAIL;
+import static com.ymd.businesshousegame.entity.CellType.TREASURE;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.ymd.businesshousegame.entity.CellType.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ymd.businesshousegame.entity.Board;
+import com.ymd.businesshousegame.entity.Cell;
+import com.ymd.businesshousegame.repository.BoardRepository;
 
 @Service
 public class BoardService {
