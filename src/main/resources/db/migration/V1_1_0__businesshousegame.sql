@@ -9,9 +9,9 @@ CREATE TABLE player (current_position_on_board INT NOT NULL,player_id INT AUTO_I
 
 
 ALTER TABLE board_board_cells ADD CONSTRAINT FK5al6eddedscmmdoqh9vxjfav8 FOREIGN KEY (board_cells_id) REFERENCES cell(id);
-ALTER TABLE board_board_cells ADD CONSTRAINT FKhul7w5t98tinc155b5bw1x4j8 FOREIGN KEY (board_board_id) REFERENCES board(id);
+ALTER TABLE board_board_cells ADD CONSTRAINT FKhul7w5t98tinc155b5bw1x4j8 FOREIGN KEY (board_board_id) REFERENCES board(board_id);
 ALTER TABLE cell ADD CONSTRAINT FK762594yoomjplvuisyerckcqw FOREIGN KEY (hotel_owner_player_id) REFERENCES player(player_id);
-ALTER TABLE dice_outputs ADD CONSTRAINT FKcjkhkbrpfyropxl9rk9l0rxsp FOREIGN KEY (dice_id) REFERENCES dice(dice_id);
+ALTER TABLE dice_outputs ADD CONSTRAINT FKcjkhkbrpfyropxl9rk9l0rxsp FOREIGN KEY (dice_id) REFERENCES dice(id);
 ALTER TABLE game ADD CONSTRAINT FKana02t2dv69dnew6d6gb2xx6a FOREIGN KEY (board_board_id) REFERENCES board(board_id);
 ALTER TABLE game ADD CONSTRAINT FK7hjdfdnbwm8ma272d6f4ih8q2 FOREIGN KEY (dice_id) REFERENCES dice(id);
 ALTER TABLE game ADD CONSTRAINT FKlldqstvhmqsgcnhe7bpro838a FOREIGN KEY (next_player_player_id) REFERENCES player(player_id);
