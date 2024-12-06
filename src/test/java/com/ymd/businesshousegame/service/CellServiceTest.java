@@ -38,7 +38,11 @@ public class CellServiceTest {
 			switch (cord) {
 			case "J" -> boardCells.add(new Cell(CellType.JAIL, counter));
 			case "T" -> boardCells.add(new Cell(CellType.TREASURE, counter));
-			case "H" -> boardCells.add(new Cell(CellType.HOTEL, counter));
+			case "H" -> {
+				Cell hotelCell = new Cell(CellType.HOTEL, counter);
+				hotelCell.setHotelWorth(200);
+				boardCells.add(hotelCell);
+			}
 			case "E" -> boardCells.add(new Cell(CellType.EMPTY, counter));
 			}
 			counter = counter + 1;
@@ -47,6 +51,7 @@ public class CellServiceTest {
 		Board board = new Board(1, boardCells);
 
 		Player player = new Player(1, "Test Player");
+		player.setTotalBalance(1000);
 
 		Player resultPlayer = cellService.handleCellLanding(board, player);
 
@@ -62,6 +67,7 @@ public class CellServiceTest {
 		String boardCords = "H,E,J,H,E,T,J,T,E,E,H,J,T,H,E,E,J,H,E,T,J,T,E,E,H,J,T,E,H,E";
 		String[] boardCordsAsArray = boardCords.split(",");
 		Player player = new Player(1, "Test Player");
+		player.setTotalBalance(1000);
 
 		List<Cell> boardCells = new ArrayList<>();
 		int counter = 0;
@@ -72,6 +78,7 @@ public class CellServiceTest {
 			case "H" -> {
 				Cell hotelCell = new Cell(CellType.HOTEL, counter);
 				hotelCell.setHotelOwner(player);
+				hotelCell.setHotelRent(50);
 				boardCells.add(hotelCell);
 			}
 
@@ -99,7 +106,11 @@ public class CellServiceTest {
 		int counter = 0;
 		for (String cord : boardCordsAsArray) {
 			switch (cord) {
-			case "J" -> boardCells.add(new Cell(CellType.JAIL, counter));
+			case "J" -> {
+				Cell JailCell = new Cell(CellType.JAIL, counter);
+				JailCell.setJailPenalty(150);
+				boardCells.add(JailCell);
+			}
 			case "T" -> boardCells.add(new Cell(CellType.TREASURE, counter));
 			case "H" -> boardCells.add(new Cell(CellType.HOTEL, counter));
 			case "E" -> boardCells.add(new Cell(CellType.EMPTY, counter));
@@ -110,6 +121,7 @@ public class CellServiceTest {
 		Board board = new Board(1, boardCells);
 
 		Player player = new Player(1, "Test Player");
+		player.setTotalBalance(1000);
 
 		Player resultPlayer = cellService.handleCellLanding(board, player);
 
@@ -138,6 +150,7 @@ public class CellServiceTest {
 		Board board = new Board(1, boardCells);
 
 		Player player = new Player(1, "Test Player");
+		player.setTotalBalance(1000);
 
 		Player resultPlayer = cellService.handleCellLanding(board, player);
 
@@ -155,7 +168,11 @@ public class CellServiceTest {
 		for (String cord : boardCordsAsArray) {
 			switch (cord) {
 			case "J" -> boardCells.add(new Cell(CellType.JAIL, counter));
-			case "T" -> boardCells.add(new Cell(CellType.TREASURE, counter));
+			case "T" -> {
+				Cell treasureCell = new Cell(CellType.TREASURE, counter);
+				treasureCell.setTreasureValue(200);
+				boardCells.add(treasureCell);
+			}
 			case "H" -> boardCells.add(new Cell(CellType.HOTEL, counter));
 			case "E" -> boardCells.add(new Cell(CellType.EMPTY, counter));
 			}
@@ -165,6 +182,7 @@ public class CellServiceTest {
 		Board board = new Board(1, boardCells);
 
 		Player player = new Player(1, "Test Player");
+		player.setTotalBalance(1000);
 
 		Player resultPlayer = cellService.handleCellLanding(board, player);
 
